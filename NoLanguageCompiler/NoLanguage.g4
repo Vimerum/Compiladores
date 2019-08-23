@@ -35,9 +35,9 @@ condicao: expressao OPERADOR expressao;
 
 expressao: operadorNivel1;
 
-operadorNivel1: operadorNivel2 ( ('+' | '-') operadorNivel2)*;
+operadorNivel1: operadorNivel2 ( NIVEL1 operadorNivel2)*;
 
-operadorNivel2: termo ( ('*' | '/') termo)*;
+operadorNivel2: termo ( NIVEL2 termo)*;
 
 termo: NUMERO | ID | ('(' expressao ')');
 
@@ -46,6 +46,10 @@ WS: [ \t\r\n]+ -> skip;
 // Constantes
 
 TIPO: ('int' | 'float');
+
+NIVEL1: ('+' | '-');
+
+NIVEL2: ('*' | '/');
 
 OPERADOR: ('<' | '<=' | '==' | '!=' | '>=' | '>' | '&&' | '||');
 
