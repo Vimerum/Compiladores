@@ -7,27 +7,31 @@ public class NoLanguageCompiler {
 
     public static void main (String[] args) {
         // Confere se foi passado o numero certo de argumentos
-        if (args.length == 0) {
+        if (args.length == 0 || args[0].equals("../")) {
             System.out.println("[ERRO 001]: Eh necessario um argumento para compilacao: o nome do arquivo a ser compilado.");
         } else if (args.length > 1) {
             System.out.println("[ERRO 002]: Muitos argumento foram passados, apenas um eh necessario: o nome do arquivo a ser compilado.");
         } else {
             String fileName = args[0];
-            try {
-                // Printa o Header
-                printHeader();
+            if (fileName.endsWith(".nl")) {
+                try {
+                    // Printa o Header
+                    printHeader();
 
-                System.out.printf("Iniciando compilacao do arquivo: %s\n", fileName);
-                // Cria um Stream que le o arquivo
-                CharStream input = CharStreams.fromFileName(fileName);
-                compile(input);
+                    System.out.printf("Iniciando compilacao do arquivo: %s\n", fileName);
+                    // Cria um Stream que le o arquivo
+                    CharStream input = CharStreams.fromFileName(fileName);
+                    compile(input);
 
-                System.out.println("Arquivo compilado com SUCESSO.\n");
-                // Printa o Footer
-                printFooter();
-            } catch (Exception e) {
-                System.out.println("[ERRO 003]: Ocorreu uma excecao:");
-                System.out.println(e.getMessage());
+                    System.out.println("Arquivo compilado com SUCESSO.\n");
+                    // Printa o Footer
+                    printFooter();
+                } catch (Exception e) {
+                    System.out.println("[ERRO 003]: Ocorreu uma excecao ao abrir o arquivo:");
+                    System.out.println(e);
+                }
+            } else {
+                System.out.println("[ERRO 004]: Argumento invalido, o arquivo deve ter a extensão .nl");
             }
         }
     }
@@ -56,7 +60,7 @@ public class NoLanguageCompiler {
     }
 
     private static void printHeader () throws Exception {
-        BufferedReader reader = new BufferedReader(new FileReader("NoLanguageHeader.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("Resources/NoLanguageHeader.txt"));
 
         String line = reader.readLine();
 
@@ -69,7 +73,7 @@ public class NoLanguageCompiler {
     }
 
     private static void printFooter () throws Exception {
-        BufferedReader reader = new BufferedReader(new FileReader("NoLanguageFooter.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("Resources/NoLanguageFooter.txt"));
 
         String line = reader.readLine();
 

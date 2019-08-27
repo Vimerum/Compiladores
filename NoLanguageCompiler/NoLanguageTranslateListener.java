@@ -86,6 +86,8 @@ public class NoLanguageTranslateListener extends NoLanguageBaseListener {
         } else {
             throw new RuntimeException("Variavel nao declarada: " + varName + " nao foi declarada.");
         }
+
+        addLinha(newLine);
     }
 
     @Override
@@ -94,9 +96,9 @@ public class NoLanguageTranslateListener extends NoLanguageBaseListener {
 
         if (ctx.ID() != null) {
             if (varInt.contains(ctx.ID().getText()))
-                newLine += "\"%d\", " + ctx.ID().getText() + ");";
+                newLine += "\"%d\\n\", " + ctx.ID().getText() + ");";
             else if (varFloat.contains(ctx.ID().getText()))
-                newLine += "\"%f\", " + ctx.ID().getText() + ");";
+                newLine += "\"%f\\n\", " + ctx.ID().getText() + ");";
             else
                 throw new RuntimeException("Variavel nao declarada: " + ctx.ID().getText() + " nao foi declarada.");
         } else if (ctx.STRING() != null) {
@@ -258,8 +260,8 @@ public class NoLanguageTranslateListener extends NoLanguageBaseListener {
             writer.close();
             file.close();
         } catch (Exception e) {
-            System.out.println("[ERRO 003]: Ocorreu um erro ao salvar o arquivo.");
-            System.out.println(e.getMessage());
+            System.out.println("[ERRO 005]: Ocorreu um erro ao salvar o arquivo.");
+            System.out.println(e);
         }
     }
 }
