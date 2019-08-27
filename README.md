@@ -10,13 +10,21 @@
 
 1. [Introdução](#introducao)
 2. [Gramática](#gramatica)
+
     2.1 [Estrutura geral](#estrutura-geral)
+
     2.2 [Variaveis](#variaveis)
+
     2.3 [Bloco de Código](#bloco-de-codigo)
+
 3. [Instruções](#instrucoes)
+
     3.1 [Pré-requisitos](#pre-requisitos)
+
     3.2 [Compilar um programa](#compilar-programa)
+
     3.3 [Exemplos](#exemplos)
+
 4. [Resolução de problemas](#resolucao-de-problemas)
 
 ## Introdução <a name="introducao"></a>
